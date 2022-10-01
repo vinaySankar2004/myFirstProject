@@ -11,7 +11,7 @@ Someone who wants to order a sandwich/meal, provided that there is a store that 
 
 ### Why is this project of interest to you?
 
-Food-ordering applications like Uber Eats and DoorDash are so dominant and successful nationwide. I believe creating an application similar to these is a great first step to my future in Computer Science. 
+Food-ordering applications like Uber Eats and DoorDash are so dominant and successful nationwide. I believe creating an application similar to these are a great first step to my future in Computer Science. 
 
 ### User Stories 
 - As a user, I want to be able to add a topping to my sandwich
