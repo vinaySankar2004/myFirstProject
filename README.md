@@ -15,6 +15,6 @@ Food-ordering applications like Uber Eats and DoorDash are so dominant and succe
 
 ### User Stories 
 - As a user, I want to be able to add a topping to my sandwich
-- As a user, I want to be able to view my sandwich order
-- As a user, I want to be able to remove a topping from my sandwich
-- As a user, I want to be able to see my previous orders
+- As a user, I want to be able to view my order
+- As a user, I want to be able to add extra topping to my sandwich
+- As a user, I want to be able to see the total price of my order
