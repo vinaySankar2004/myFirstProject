@@ -4,83 +4,89 @@ import model.*;
 
 import java.util.Scanner;
 
+// MySandwich Application
 public class MySandwichApp {
     // available breads with prices
-    private static final SandwichOrder ENGLISH = new Bread("English Bread", 1.00);
-    private static final SandwichOrder FLAT = new Bread("Flat Bread", 1.00);
-    private static final SandwichOrder GLUTEN_FREE = new Bread("Gluten-Free Bread", 1.00);
-    private static final SandwichOrder HARVEST_GRAIN = new Bread("Harvest-Grain Bread", 1.00);
-    private static final SandwichOrder ITALIAN = new Bread("Italian Bread", 1.00);
-    private static final SandwichOrder ITALIAN_HERBS_AND_CHEESE = new Bread("Italian, Herbs and Cheese", 1.00);
-    private static final SandwichOrder MULTIGRAIN = new Bread("Multigrain Bread", 1.00);
+    private static final SandwichComponent ENGLISH = new Bread("English Bread", 1.00);
+    private static final SandwichComponent FLAT = new Bread("Flat Bread", 1.00);
+    private static final SandwichComponent GLUTEN_FREE = new Bread("Gluten-Free Bread", 1.00);
+    private static final SandwichComponent HARVEST_GRAIN = new Bread("Harvest-Grain Bread", 1.00);
+    private static final SandwichComponent ITALIAN = new Bread("Italian Bread", 1.00);
+    private static final SandwichComponent ITALIAN_HERBS_AND_CHEESE = new Bread("Italian, Herbs and Cheese", 1.00);
+    private static final SandwichComponent MULTIGRAIN = new Bread("Multigrain Bread", 1.00);
 
     // available proteins with prices
-    private static final SandwichOrder BACON_STRIPS = new Protein("Bacon Strips", 1.00);
-    private static final SandwichOrder GRILLED_CHICKEN = new Protein("Grilled Chicken", 2.00);
-    private static final SandwichOrder CRISPY_CHICKEN = new Protein("Crispy Chicken", 2.00);
-    private static final SandwichOrder HAM = new Protein("Ham", 1.50);
-    private static final SandwichOrder ITALIAN_BMT = new Protein("Italian BMT", 3.50);
-    private static final SandwichOrder MARINARA_MEATBALLS = new Protein("Marinara Meatballs", 3.00);
-    private static final SandwichOrder PEPPERONI = new Protein("Pepperoni", 2.50);
-    private static final SandwichOrder ROAST_BEEF = new Protein("Roast Beef", 3.00);
-    private static final SandwichOrder TUNA = new Protein("Tuna", 1.75);
-    private static final SandwichOrder VEGGIE_PATTY = new Protein("Veggie Patty", 1.50);
+    private static final SandwichComponent BACON_STRIPS = new Protein("Bacon Strips", 1.00);
+    private static final SandwichComponent GRILLED_CHICKEN = new Protein("Grilled Chicken", 2.00);
+    private static final SandwichComponent CRISPY_CHICKEN = new Protein("Crispy Chicken", 2.00);
+    private static final SandwichComponent HAM = new Protein("Ham", 1.50);
+    private static final SandwichComponent ITALIAN_BMT = new Protein("Italian BMT", 3.50);
+    private static final SandwichComponent MARINARA_MEATBALLS = new Protein("Marinara Meatballs", 3.00);
+    private static final SandwichComponent PEPPERONI = new Protein("Pepperoni", 2.50);
+    private static final SandwichComponent ROAST_BEEF = new Protein("Roast Beef", 3.00);
+    private static final SandwichComponent TUNA = new Protein("Tuna", 1.75);
+    private static final SandwichComponent VEGGIE_PATTY = new Protein("Veggie Patty", 1.50);
 
     // available cheese
-    private static final SandwichOrder CHEDDAR = new Cheese("Cheddar Cheese", 1.50);
-    private static final SandwichOrder PARMESAN = new Cheese("Parmesan Cheese", 1.50);
-    private static final SandwichOrder FETA = new Cheese("Feta Cheese", 2.00);
-    private static final SandwichOrder MONTEREY_JACK = new Cheese("Monterey Jack Cheese", 2.00);
-    private static final SandwichOrder SWISS = new Cheese("Swiss Cheese", 2.50);
+    private static final SandwichComponent CHEDDAR = new Cheese("Cheddar Cheese", 1.50);
+    private static final SandwichComponent PARMESAN = new Cheese("Parmesan Cheese", 1.50);
+    private static final SandwichComponent FETA = new Cheese("Feta Cheese", 2.00);
+    private static final SandwichComponent MONTEREY_JACK = new Cheese("Monterey Jack Cheese", 2.00);
+    private static final SandwichComponent SWISS = new Cheese("Swiss Cheese", 2.50);
 
     // available sauces
-    private static final SandwichOrder BBQ = new Sauce("BBQ", 1.25);
-    private static final SandwichOrder CAESAR = new Sauce("Caesar", 1.25);
-    private static final SandwichOrder CHIPOTLE_SOUTHWEST = new Sauce("Chipotle Southwest", 1.25);
-    private static final SandwichOrder CREAMY_SRIRACHA = new Sauce("Creamy Sriracha", 1.25);
-    private static final SandwichOrder GARLIC_AIOLI = new Sauce("Garlic Aioli", 1.25);
-    private static final SandwichOrder MAYONNAISE = new Sauce("Mayonnaise", 1.25);
-    private static final SandwichOrder MUSTARD = new Sauce("Mustard", 1.25);
-    private static final SandwichOrder HOT = new Sauce("Hot Sauce", 1.25);
-    private static final SandwichOrder GREEN_GODDESS = new Sauce("Green Goddess Dressing", 2.00);
-    private static final SandwichOrder SWEET_ONION_SAUCE = new Sauce("Sweet Onion", 1.25);
+    private static final SandwichComponent BBQ = new Sauce("BBQ", 1.25);
+    private static final SandwichComponent CAESAR = new Sauce("Caesar", 1.25);
+    private static final SandwichComponent CHIPOTLE_SOUTHWEST = new Sauce("Chipotle Southwest", 1.25);
+    private static final SandwichComponent CREAMY_SRIRACHA = new Sauce("Creamy Sriracha", 1.25);
+    private static final SandwichComponent GARLIC_AIOLI = new Sauce("Garlic Aioli", 1.25);
+    private static final SandwichComponent MAYONNAISE = new Sauce("Mayonnaise", 1.25);
+    private static final SandwichComponent MUSTARD = new Sauce("Mustard", 1.25);
+    private static final SandwichComponent HOT = new Sauce("Hot Sauce", 1.25);
+    private static final SandwichComponent GREEN_GODDESS = new Sauce("Green Goddess Dressing", 2.00);
+    private static final SandwichComponent SWEET_ONION_SAUCE = new Sauce("Sweet Onion", 1.25);
 
     // available vegetables
-    private static final SandwichOrder TOMATO = new Vegetable("Tomato", 0.35);
-    private static final SandwichOrder ONION = new Vegetable("Onion", 0.35);
-    private static final SandwichOrder LETTUCE = new Vegetable("Lettuce", 0.35);
-    private static final SandwichOrder SPINACH = new Vegetable("Spinach", 0.35);
-    private static final SandwichOrder CUCUMBER = new Vegetable("Cucumber", 0.35);
-    private static final SandwichOrder OLIVE = new Vegetable("Olive", 0.35);
-    private static final SandwichOrder GUACAMOLE = new Vegetable("Guacamole", 0.35);
-    private static final SandwichOrder PICKLE = new Vegetable("Pickle", 0.35);
-    private static final SandwichOrder BANANA_PEPPER = new Vegetable("Banana Pepper", 0.35);
-    private static final SandwichOrder JALAPENO = new Vegetable("Jalapeno", 0.35);
+    private static final SandwichComponent TOMATO = new Vegetable("Tomato", 0.35);
+    private static final SandwichComponent ONION = new Vegetable("Onion", 0.35);
+    private static final SandwichComponent LETTUCE = new Vegetable("Lettuce", 0.35);
+    private static final SandwichComponent SPINACH = new Vegetable("Spinach", 0.35);
+    private static final SandwichComponent CUCUMBER = new Vegetable("Cucumber", 0.35);
+    private static final SandwichComponent OLIVE = new Vegetable("Olive", 0.35);
+    private static final SandwichComponent GUACAMOLE = new Vegetable("Guacamole", 0.35);
+    private static final SandwichComponent PICKLE = new Vegetable("Pickle", 0.35);
+    private static final SandwichComponent BANANA_PEPPER = new Vegetable("Banana Pepper", 0.35);
+    private static final SandwichComponent JALAPENO = new Vegetable("Jalapeno", 0.35);
 
     // available seasoning
-    private static final SandwichOrder SALT = new Seasoning("Salt", 0);
-    private static final SandwichOrder PEPPER = new Seasoning("Pepper", 0);
+    private static final SandwichComponent SALT = new Seasoning("Salt", 0);
+    private static final SandwichComponent PEPPER = new Seasoning("Pepper", 0);
 
     // variables
     private MySandwich order = new MySandwich();
     private Scanner input;
 
+    // runs the MySandwich application
     public MySandwichApp() {
         runApp();
     }
 
-    // application
+    //MODIFIES: this
+    //EFFECTS: processes the user input
     public void runApp() {
-        displayMenu();
+        displayWelcomeMenu();
         sandwich();
         showPriceBreakDown();
     }
 
-    public void displayMenu() {
+    // EFFECTS: displays the welcome menu to user
+    public void displayWelcomeMenu() {
         System.out.println("\nWelcome to MySandwich!");
         System.out.println("Make the sandwich of your life!");
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds toppings (and extra) to the sandwich
     public void sandwich() {
         bread();
         protein();
@@ -90,6 +96,10 @@ public class MySandwichApp {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////
+
+    //REQUIRES: user input must be yes or no , and bread choice must be associated with bread in the menu
+    //MODIFIES: this
+    //EFFECTS: takes user input and uses the chosen bread, as well as adding cheese and getting it toasted or not
     public void bread() {
         displayBreadMenu();
         String breadType = input.next();
@@ -105,6 +115,9 @@ public class MySandwichApp {
         }
     }
 
+    //REQUIRES: user input must be 6 or 12 only
+    //MODIFIES: this
+    //EFFECTS: asks user if they want 6 or 12 inch, and processes the user input
     public void breadSize() {
         System.out.println("\nChoose the size of your sandwich:");
         System.out.println("\t6 -> 6 inch");
@@ -118,6 +131,7 @@ public class MySandwichApp {
         }
     }
 
+    //EFFECTS: displays the bread menu to user
     public void displayBreadMenu() {
         System.out.println("\nChoose the type of bread:");
         System.out.println("\tenglish -> English Bread");
@@ -128,6 +142,7 @@ public class MySandwichApp {
         System.out.println("\tihac -> Italian, Herbs and Cheese Bread");
     }
 
+    //EFFECTS: processes user bread choice and displays user choice
     public void breadChoice(String s) {
         if (s.equals("english")) {
             order.addComponent(ENGLISH);
@@ -155,6 +170,9 @@ public class MySandwichApp {
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+    //REQUIRES: user input must be yes or no , and protein choice must be associated with a protein in the menu
+    //MODIFIES: this
+    //EFFECTS: takes user input and adds the chosen protein(s)
     public void protein() {
         displayProteinMenu();
         String protein = input.next();
@@ -172,6 +190,7 @@ public class MySandwichApp {
         }
     }
 
+    //EFFECTS: displays protein menu to user
     public void displayProteinMenu() {
         System.out.println("\nChoose protein:");
         System.out.println("\tbacon -> Bacon Strips");
@@ -186,11 +205,14 @@ public class MySandwichApp {
         System.out.println("\tveggie -> Veggie Patty");
     }
 
-    public void addAndPrintProtein(SandwichOrder sandwichOrder) {
-        order.addComponent(sandwichOrder);
-        System.out.println("You have chosen: " + sandwichOrder.getName());
+    //helper method
+    //EFFECTS: adds protein to sandwich and displays user choice
+    public void addAndPrintProtein(SandwichComponent sandwichComponent) {
+        order.addComponent(sandwichComponent);
+        System.out.println("You have chosen: " + sandwichComponent.getName());
     }
 
+    //EFFECTS: processes user bread choice and displays user choice
     public void proteinChoice(String s) {
         if (s.equals("bacon")) {
             addAndPrintProtein(BACON_STRIPS);
@@ -217,6 +239,8 @@ public class MySandwichApp {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //MODIFIES: this
+    //EFFECTS: takes user input and adds the chosen vegetable(s)
     public void vegetable() {
         displayVegetableMenu();
     }
@@ -234,6 +258,10 @@ public class MySandwichApp {
         jalapeno();
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add tomatoes(and extra) and processes user input
     public void tomato() {
         System.out.println("Do you want to add Tomatoes? (yes or no)");
         String choice = input.next();
@@ -251,6 +279,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add onions(and extra) and processes user input
     public void onion() {
         System.out.println("Do you want to add Onions? (yes or no)");
         String choice = input.next();
@@ -268,6 +300,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add lettuce(and extra) and processes user input
     public void lettuce() {
         System.out.println("Do you want to add Lettuce? (yes or no)");
         String choice = input.next();
@@ -285,6 +321,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add spinach(and extra) and processes user input
     public void spinach() {
         System.out.println("Do you want to add Spinach? (yes or no)");
         String choice = input.next();
@@ -302,6 +342,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add cucumbers(and extra) and processes user input
     public void cucumber() {
         System.out.println("Do you want to add Cucumbers? (yes or no)");
         String choice = input.next();
@@ -319,6 +363,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add olives(and extra) and processes user input
     public void olive() {
         System.out.println("Do you want to add Olives? (yes or no)");
         String choice = input.next();
@@ -336,6 +384,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add guacamole(and extra) and processes user input
     public void guacamole() {
         System.out.println("Do you want to add Guacamole? (yes or no)");
         String choice = input.next();
@@ -353,6 +405,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add pickles(and extra) and processes user input
     public void pickle() {
         System.out.println("Do you want to add Pickles? (yes or no)");
         String choice = input.next();
@@ -370,6 +426,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add banana peppers(and extra) and processes user input
     public void bananaPepper() {
         System.out.println("Do you want to add Banana Peppers? (yes or no)");
         String choice = input.next();
@@ -387,6 +447,10 @@ public class MySandwichApp {
         }
     }
 
+    //helper method
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: ask user if they want to add jalapenos(and extra) and processes user input
     public void jalapeno() {
         System.out.println("Do you want to add Jalapenos? (yes or no)");
         String choice = input.next();
@@ -406,6 +470,9 @@ public class MySandwichApp {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //REQUIRES: user input must be yes or no, and sauce choice must be associated with a sauce in the menu
+    //MODIFIES: this
+    //EFFECTS: asks user to choose up to 4 sauces, and processes user input
     public void sauce() {
         System.out.println("Choose up to 4 sauces:");
         int count = 0;
@@ -430,6 +497,7 @@ public class MySandwichApp {
         }
     }
 
+    //EFFECTS: displays the sauce menu to user
     public void displaySauceMenu() {
         System.out.println("\tbbq -> BBQ");
         System.out.println("\tcaesar -> Caesar");
@@ -443,11 +511,14 @@ public class MySandwichApp {
         System.out.println("\tonion -> Sweet Onion");
     }
 
-    public void addAndPrintSauce(SandwichOrder sandwichOrder) {
-        order.addComponent(sandwichOrder);
-        System.out.println("You have added: " + sandwichOrder.getName());
+    //EFFECTS: adds sauce to sandwich and displays user choice
+    public void addAndPrintSauce(SandwichComponent sandwichComponent) {
+        order.addComponent(sandwichComponent);
+        System.out.println("You have added: " + sandwichComponent.getName());
     }
 
+    //REQUIRES: string s must be associated with a sauce in the menu
+    //EFFECTS: matches string and adds sauce to sandwich, displaying user choice
     public void sauceChoice(String s) {
         if (s.equals("bbq")) {
             addAndPrintSauce(BBQ);
@@ -474,6 +545,9 @@ public class MySandwichApp {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //REQUIRES: user input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: asks user if they want to add salt or pepper, then processes the input and adds it to the sandwich
     public void seasoning() {
         System.out.println("\nDo you want to add Salt? (yes or no)");
         String wantSalt = input.next();
@@ -495,7 +569,9 @@ public class MySandwichApp {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+    //REQUIRES: input must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: displays cheese menu, processes user input and adds cheese to sandwich
     public void cheese() {
         displayCheeseMenu();
         String cheeseType = input.next();
@@ -512,6 +588,8 @@ public class MySandwichApp {
         }
     }
 
+    //REQUIRES: string s must be associated with one of the cheese in the menu
+    //EFFECTS: EFFECTS: matches string and adds cheese to sandwich, displaying user choice
     public void cheeseChoice(String s) {
         if (s.equals("cheddar")) {
             order.addComponent(CHEDDAR);
@@ -531,6 +609,7 @@ public class MySandwichApp {
         }
     }
 
+    //EFFECTS: displays the cheese menu to user
     public void displayCheeseMenu() {
         System.out.println("\nChoose the type of cheese:");
         System.out.println("\tcheddar -> Cheddar Cheese");
@@ -545,6 +624,7 @@ public class MySandwichApp {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //EFFECTS: shows the total breakdown of each component of the sandwich, including total amount with tax
     public void showPriceBreakDown() {
         System.out.println("\nTotal price breakdown: ");
         for (int i = 0; i < order.getFillings().size(); i++) {

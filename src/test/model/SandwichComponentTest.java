@@ -3,18 +3,17 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.plaf.IconUIResource;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SandwichOrderTest {
-    private SandwichOrder bread;
-    private SandwichOrder cheese;
-    private SandwichOrder protein;
-    private SandwichOrder vegetable;
-    private SandwichOrder sauce;
-    private SandwichOrder seasoning;
+class SandwichComponentTest {
+    private SandwichComponent bread;
+    private SandwichComponent cheese;
+    private SandwichComponent protein;
+    private SandwichComponent vegetable;
+    private SandwichComponent sauce;
+    private SandwichComponent seasoning;
     private MySandwich myOrder;
 
     @BeforeEach
