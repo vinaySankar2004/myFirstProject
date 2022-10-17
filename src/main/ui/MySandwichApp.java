@@ -75,6 +75,8 @@ public class MySandwichApp {
     //EFFECTS: processes the user input
     public void runApp() {
         displayWelcomeMenu();
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
         sandwich();
         showPriceBreakDown();
     }
