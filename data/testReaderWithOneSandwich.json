@@ -1,0 +1,23 @@
+{"sandwiches": [
+  {
+    "fillings": [
+      {
+        "price": 1,
+        "name": "Italian, Herbs and Cheese"
+      },
+      {
+        "price": 2,
+        "name": "Feta Cheese"
+      },
+      {
+        "price": 1,
+        "name": "Bacon Strips"
+      },
+      {
+        "price": 0.35,
+        "name": "Tomato"
+      }
+    ],
+    "isSixInch": false
+  }
+]}

@@ -1,0 +1,36 @@
+{"sandwiches": [
+    {
+        "fillings": [
+            {
+                "price": 1,
+                "name": "Italian, Herbs and Cheese"
+            },
+            {
+                "price": 2,
+                "name": "Feta Cheese"
+            },
+            {
+                "price": 1.5,
+                "name": "Ham"
+            }
+        ],
+        "isSixInch": false
+    },
+    {
+        "fillings": [
+            {
+                "price": 1,
+                "name": "English Bread"
+            },
+            {
+                "price": 1.5,
+                "name": "Cheddar Cheese"
+            },
+            {
+                "price": 1.5,
+                "name": "Veggie Patty"
+            }
+        ],
+        "isSixInch": true
+    }
+]}

@@ -127,7 +127,7 @@ class SandwichComponentTest {
         myOrder.addComponent(sauce);
         myOrder.addComponent(seasoning);
         double price = 15.52;
-        String string = "\nThe total price for your order (including tax) is $" + price + "\nThank you for using MySandwich!";
+        String string = "\nThe total price for this order (including tax) is $" + price + "\nThank you for using MySandwich!";
         assertEquals(string, myOrder.toString());
     }
 

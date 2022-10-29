@@ -1,7 +1,13 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // MySandwich Application
@@ -62,12 +68,35 @@ public class MySandwichApp {
     private static final SandwichComponent SALT = new Seasoning("Salt", 0);
     private static final SandwichComponent PEPPER = new Seasoning("Pepper", 0);
 
+    // available dessert
+    private static final SandwichComponent CHOCO_CHIP_COOKIE = new Dessert("Choco-Chip Cookie", 4.50);
+    private static final SandwichComponent BROWNIE = new Dessert("Brownie", 5.00);
+    private static final SandwichComponent PLAIN_COOKIE = new Dessert("Plain Cookie", 3.50);
+    private static final SandwichComponent CHOCOLATE_SOFTY = new Dessert("Chocolate Softy", 3.00);
+    private static final SandwichComponent VANILLA_SOFTY = new Dessert("Vanilla Softy", 3.00);
+
+    // available drinks
+    private static final SandwichComponent WATER = new Drink("Bottled Water", 2.00);
+    private static final SandwichComponent COCA_COLA = new Drink("Coca-Cola", 2.50);
+    private static final SandwichComponent MOUNTAIN_DEW = new Drink("Mountain Dew", 2.50);
+    private static final SandwichComponent ROOT_BEER = new Drink("Root Beer", 2.60);
+    private static final SandwichComponent FANTA = new Drink("Fanta", 2.50);
+
     // variables
     private MySandwich order = new MySandwich();
     private Scanner input;
+    private List<MySandwich> mySandwiches;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/mySandwiches.json";
 
     // runs the MySandwich application
     public MySandwichApp() {
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        mySandwiches = new ArrayList<>();
         runApp();
     }
 
@@ -75,10 +104,23 @@ public class MySandwichApp {
     //EFFECTS: processes the user input
     public void runApp() {
         displayWelcomeMenu();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
+        loadPreviousOrders();
         sandwich();
+        dessert();
+        drink();
         showPriceBreakDown();
+        mySandwiches.add(order);
+        saveMySandwiches();
+    }
+
+    public void loadPreviousOrders() {
+        System.out.println("\nDo you want to view your previous orders? (yes or no)");
+        String choice = input.next();
+        choice = choice.toLowerCase();
+        if (choice.equals("yes")) {
+            loadMySandwiches();
+            printPreviousOrders();
+        }
     }
 
     // EFFECTS: displays the welcome menu to user
@@ -275,7 +317,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(TOMATO);
+                order.addComponent(TOMATO);
                 System.out.println("You have added: Tomatoes");
             }
         }
@@ -296,7 +338,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(ONION);
+                order.addComponent(ONION);
                 System.out.println("You have added: Onions");
             }
         }
@@ -317,7 +359,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(LETTUCE);
+                order.addComponent(LETTUCE);
                 System.out.println("You have added: Lettuce");
             }
         }
@@ -338,7 +380,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(SPINACH);
+                order.addComponent(SPINACH);
                 System.out.println("You have added: Spinach");
             }
         }
@@ -359,7 +401,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(CUCUMBER);
+                order.addComponent(CUCUMBER);
                 System.out.println("You have added: Cucumber");
             }
         }
@@ -380,7 +422,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(OLIVE);
+                order.addComponent(OLIVE);
                 System.out.println("You have added: Olives");
             }
         }
@@ -401,7 +443,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(GUACAMOLE);
+                order.addComponent(GUACAMOLE);
                 System.out.println("You have added: Guacamole");
             }
         }
@@ -422,7 +464,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(PICKLE);
+                order.addComponent(PICKLE);
                 System.out.println("You have added: Pickles");
             }
         }
@@ -443,7 +485,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(BANANA_PEPPER);
+                order.addComponent(BANANA_PEPPER);
                 System.out.println("You have added: Banana Peppers");
             }
         }
@@ -464,7 +506,7 @@ public class MySandwichApp {
             String choiceAgain = input.next();
             choiceAgain = choiceAgain.toLowerCase();
             if (choiceAgain.equals("yes")) {
-                order.addExtra(JALAPENO);
+                order.addComponent(JALAPENO);
                 System.out.println("You have added: Jalapenos");
             }
         }
@@ -623,6 +665,117 @@ public class MySandwichApp {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //REQUIRES: inputs must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: displays drinks menu, processes user input and adds drink(s) to sandwich order
+    public void drink() {
+        boolean toContinue = true;
+        System.out.println("\nDo you want a drink? (yes or no)");
+        String choice = input.next();
+        choice = choice.toLowerCase();
+        if (choice.equals("yes")) {
+            while (toContinue) {
+                displayDrinkMenu();
+                String drinkChoice = input.next();
+                drinkChoice = drinkChoice.toLowerCase();
+                drinkChoice(drinkChoice);
+                System.out.println("\nDo you want another drink? (yes or no)");
+                String choice2 = input.next();
+                choice2 = choice2.toLowerCase();
+                if (choice2.equals("no")) {
+                    toContinue = false;
+                }
+            }
+        }
+    }
+
+    //REQUIRES: string s must be associated with one of the drinks in the menu
+    //EFFECTS: matches string and adds drink to sandwich order, displaying user choice
+    public void drinkChoice(String s) {
+        if (s.equals("water")) {
+            order.addComponent(WATER);
+            System.out.println("You have chosen: " + WATER.getName());
+        } else if (s.equals("coke")) {
+            order.addComponent(COCA_COLA);
+            System.out.println("You have chosen: " + COCA_COLA.getName());
+        } else if (s.equals("dew")) {
+            order.addComponent(MOUNTAIN_DEW);
+            System.out.println("You have chosen: " + MOUNTAIN_DEW.getName());
+        } else if (s.equals("root")) {
+            order.addComponent(ROOT_BEER);
+            System.out.println("You have chosen: " + ROOT_BEER.getName());
+        } else if (s.equals("fanta")) {
+            order.addComponent(FANTA);
+            System.out.println("You have chosen: " + FANTA.getName());
+        }
+    }
+
+    //EFFECTS: displays the cheese menu to user
+    public void displayDrinkMenu() {
+        System.out.println("\nChoose the drink of your choice:");
+        System.out.println("\twater -> Bottled Water");
+        System.out.println("\tcoke -> Coca Cola");
+        System.out.println("\tdew -> Mountain Dew");
+        System.out.println("\troot -> Root Beer");
+        System.out.println("\tfanta -> Fanta");
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //REQUIRES: inputs must be yes or no only
+    //MODIFIES: this
+    //EFFECTS: displays drinks menu, processes user input and adds drink(s) to sandwich order
+    public void dessert() {
+        boolean toContinue = true;
+        System.out.println("\nDo you want a dessert? (yes or no)");
+        String choice = input.next();
+        choice = choice.toLowerCase();
+        if (choice.equals("yes")) {
+            while (toContinue) {
+                displayDessertMenu();
+                String dessertChoice = input.next();
+                dessertChoice = dessertChoice.toLowerCase();
+                dessertChoice(dessertChoice);
+                System.out.println("\nDo you want another dessert? (yes or no)");
+                String choice2 = input.next();
+                choice2 = choice2.toLowerCase();
+                if (choice2.equals("no")) {
+                    toContinue = false;
+                }
+            }
+        }
+    }
+
+    //REQUIRES: string s must be associated with one of the desserts in the menu
+    //EFFECTS: matches string and adds dessert to sandwich order, displaying user choice
+    public void dessertChoice(String s) {
+        if (s.equals("chocochip")) {
+            order.addComponent(CHOCO_CHIP_COOKIE);
+            System.out.println("You have chosen: " + CHOCO_CHIP_COOKIE.getName());
+        } else if (s.equals("brownie")) {
+            order.addComponent(BROWNIE);
+            System.out.println("You have chosen: " + BROWNIE.getName());
+        } else if (s.equals("plain")) {
+            order.addComponent(PLAIN_COOKIE);
+            System.out.println("You have chosen: " + PLAIN_COOKIE.getName());
+        } else if (s.equals("chocolate")) {
+            order.addComponent(CHOCOLATE_SOFTY);
+            System.out.println("You have chosen: " + CHOCOLATE_SOFTY.getName());
+        } else if (s.equals("vanilla")) {
+            order.addComponent(VANILLA_SOFTY);
+            System.out.println("You have chosen: " + VANILLA_SOFTY.getName());
+        }
+    }
+
+    //EFFECTS: displays the dessert menu to the user
+    public void displayDessertMenu() {
+        System.out.println("\nChoose the dessert of your choice:");
+        System.out.println("\tchocochip -> Choco-Chip Cookie");
+        System.out.println("\tbrownie -> Brownie");
+        System.out.println("\tplain -> Plain Cookie");
+        System.out.println("\tchocolate -> Chocolate Softy");
+        System.out.println("\tvanilla -> Vanilla Softy");
+    }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -630,12 +783,48 @@ public class MySandwichApp {
     public void showPriceBreakDown() {
         System.out.println("\nTotal price breakdown: ");
         for (int i = 0; i < order.getFillings().size(); i++) {
-            String name = order.getFillings().get(i);
+            String name = order.getFillings().get(i).getName();
             System.out.println(name + " - $" + String.format("%.2f", order.getAddedFillings().get(name)));
         }
         double tax = (order.returnPriceWithoutTax() * 0.07);
         System.out.println("Tax - $" + String.format("%.2f", tax));
         System.out.println(order.toString());
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //EFFECTS: saves the list of loans to file
+    private void saveMySandwiches() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(mySandwiches);
+            jsonWriter.close();
+            System.out.println("Saved to: " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write file: " + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads data from file
+    private void loadMySandwiches() {
+        try {
+            mySandwiches = jsonReader.read();
+            System.out.println("Loaded from: " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read file from: " + JSON_STORE);
+        }
+    }
+
+    private void printPreviousOrders() {
+        for (int i = 0; i < mySandwiches.size(); i++) {
+            System.out.println("\nOrder " + (i + 1));
+            for (int j = 0; j < mySandwiches.get(i).getFillings().size(); j++) {
+                System.out.println(mySandwiches.get(i).getFillings().get(j).getName());
+            }
+            System.out.println(mySandwiches.get(i).toString());
+        }
     }
 }
 

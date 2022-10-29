@@ -1,12 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 //represents the order
-public class MySandwich {
-    private List<String> fillings;
+public class MySandwich implements Writable {
+    private List<SandwichComponent> fillings;
     private HashMap<String, Double> addedFillings;
     private boolean isSixInch;
 
@@ -14,13 +18,19 @@ public class MySandwich {
     public MySandwich() {
         fillings = new ArrayList<>();
         addedFillings = new HashMap<>();
+        isSixInch = false;
     }
 
     //MODIFIES: this
     //EFFECTS: adds the sandwich component to the list and hash map (with price)
     public void addComponent(SandwichComponent sc) {
-        fillings.add(sc.getName());
-        addedFillings.put(sc.getName(), sc.getPrice());
+        if (!addedFillings.containsKey(sc.getName())) {
+            fillings.add(sc);
+            addedFillings.put(sc.getName(), sc.getPrice());
+        } else {
+            fillings.add(sc);
+            addExtra(sc);
+        }
     }
 
     //MODIFIES: this
@@ -41,7 +51,7 @@ public class MySandwich {
     }
 
     //EFFECTS: retrieves the list of added component names
-    public List<String> getFillings() {
+    public List<SandwichComponent> getFillings() {
         return fillings;
     }
 
@@ -55,7 +65,7 @@ public class MySandwich {
     public double returnPriceWithoutTax() {
         double priceWithoutTax = 0;
         for (int i = 0; i < fillings.size(); i++) {
-            priceWithoutTax += addedFillings.get(fillings.get(i));
+            priceWithoutTax += fillings.get(i).getPrice();
         }
         if (getIsSixInch()) {
             priceWithoutTax = (priceWithoutTax / 2) + 1.20;
@@ -70,10 +80,26 @@ public class MySandwich {
         return price;
     }
 
-    //EFFECTS: returns receipt string of taxed price and thanks user for using MySandwich
+    //EFFECTS: returns receipt string of taxed price, and thanks user for using MySandwich
     @Override
     public String toString() {
         String price = String.format("%.2f", returnPriceWithTax());  // get balance to 2 decimal places as a string
-        return ("\nThe total price for your order (including tax) is $" + price + "\nThank you for using MySandwich!");
+        return ("\nThe total price for this order (including tax) is $" + price + "\nThank you for using MySandwich!");
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("fillings", this.fillingsToJson());
+        json.put("isSixInch", this.isSixInch);
+        return json;
+    }
+
+    private JSONArray fillingsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (int i = 0; i < fillings.size(); i++) {
+            jsonArray.put(fillings.get(i).toJson());
+        }
+        return jsonArray;
     }
 }

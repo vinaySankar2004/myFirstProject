@@ -14,7 +14,5 @@ Someone who wants to order a sandwich/meal, provided that there is a store that 
 Food-ordering applications like Uber Eats and DoorDash are so dominant and successful nationwide. I believe creating an application similar to these is a great first step to my future in Computer Science. 
 
 ### User Stories
-- As a user, I want to be able to save my order to a file
-- As a user, I want to be able to reload the order that I saved and resume right where I left off
-- As a user, I want to be able to add extra topping to my sandwich
-- As a user, I want to be able to see the total price of my order
+- As a user, I want to be able to save my list of orders to a file
+- As a user, I want to be able to view my previous orders by retrieving it from a file and continue to make my orders

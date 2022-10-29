@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //represents a sandwich component
-public class SandwichComponent {
+public class SandwichComponent implements Writable {
     protected String name;
     protected double price;
 
@@ -20,4 +23,15 @@ public class SandwichComponent {
     public double getPrice() {
         return this.price;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("price", this.price);
+        return json;
+    }
+
+
+
 }
