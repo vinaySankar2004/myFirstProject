@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class SandwichComponentTest {
     private SandwichComponent bread;
@@ -14,6 +15,8 @@ class SandwichComponentTest {
     private SandwichComponent vegetable;
     private SandwichComponent sauce;
     private SandwichComponent seasoning;
+    private SandwichComponent drink;
+    private SandwichComponent dessert;
     private MySandwich myOrder;
 
     @BeforeEach
@@ -24,6 +27,8 @@ class SandwichComponentTest {
         vegetable = new Vegetable("Vegetable 1", 1.00);
         sauce = new Sauce("Sauce 1", 2.50);
         seasoning = new Seasoning("Salt & Pepper", 0.00);
+        drink = new Drink("Water", 1.20);
+        dessert = new Dessert("Cake", 3.50);
         myOrder = new MySandwich();
     }
 
@@ -35,12 +40,16 @@ class SandwichComponentTest {
         assertEquals("Vegetable 1", vegetable.getName());
         assertEquals("Sauce 1", sauce.getName());
         assertEquals("Salt & Pepper", seasoning.getName());
+        assertEquals("Water", drink.getName());
+        assertEquals("Cake", dessert.getName());
         assertEquals(3.50, bread.getPrice());
         assertEquals(3.50, cheese.getPrice());
         assertEquals(4.00, protein.getPrice());
         assertEquals(1.00, vegetable.getPrice());
         assertEquals(2.50, sauce.getPrice());
         assertEquals(0.00, seasoning.getPrice());
+        assertEquals(1.20, drink.getPrice());
+        assertEquals(3.50, dessert.getPrice());
         assertEquals(0, myOrder.getFillings().size());
         HashMap<String, Double> hash = new HashMap<>();
         assertEquals(hash, myOrder.getAddedFillings());
@@ -66,6 +75,14 @@ class SandwichComponentTest {
         hash.put("Protein 1", 4.00);
         hash.put("Vegetable 1", 1.00);
         assertEquals(hash, myOrder.getAddedFillings());
+    }
+
+    @Test
+    public void testAddComponentDuplicateAdded() {
+        myOrder.addComponent(bread);
+        myOrder.addComponent(protein);
+        myOrder.addComponent(protein);
+        assertEquals(3, myOrder.getFillings().size());
     }
 
     @Test
