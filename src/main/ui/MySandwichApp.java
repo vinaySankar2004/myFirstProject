@@ -258,26 +258,33 @@ public class MySandwichApp {
 
     //EFFECTS: processes user bread choice and displays user choice
     public void proteinChoice(String s) {
-        if (s.equals("bacon")) {
-            addAndPrintProtein(BACON_STRIPS);
-        } else if (s.equals("grilled")) {
-            addAndPrintProtein(GRILLED_CHICKEN);
-        } else if (s.equals("crispy")) {
-            addAndPrintProtein(CRISPY_CHICKEN);
-        } else if (s.equals("ham")) {
-            addAndPrintProtein(HAM);
-        } else if (s.equals("bmt")) {
-            addAndPrintProtein(ITALIAN_BMT);
-        } else if (s.equals("meatballs")) {
-            addAndPrintProtein(MARINARA_MEATBALLS);
-        } else if (s.equals("pepperoni")) {
-            addAndPrintProtein(PEPPERONI);
-        } else if (s.equals("beef")) {
-            addAndPrintProtein(ROAST_BEEF);
-        } else if (s.equals("tuna")) {
-            addAndPrintProtein(TUNA);
-        } else if (s.equals("veggie")) {
-            addAndPrintProtein(VEGGIE_PATTY);
+        switch (s) {
+            case "bacon":
+                addAndPrintProtein(BACON_STRIPS);
+                break;
+            case "grilled":
+                addAndPrintProtein(GRILLED_CHICKEN);
+                break;
+            case "crispy":
+                addAndPrintProtein(CRISPY_CHICKEN);
+                break;
+            case "ham":
+                addAndPrintProtein(HAM);
+                break;
+            case "bmt":
+                addAndPrintProtein(ITALIAN_BMT);
+                break;
+            case "meatballs":
+                addAndPrintProtein(MARINARA_MEATBALLS);
+                break;
+           // case "pepperoni"://   addAndPrintProtein(PEPPERONI);// break;// case "beef":\//
+            // addAndPrintProtein(ROAST_BEEF);/// break;
+            //case "tuna":
+                //addAndPrintProtein(TUNA);
+                //break;
+            case "veggie":
+                addAndPrintProtein(VEGGIE_PATTY);
+                break;
         }
     }
 
@@ -784,7 +791,7 @@ public class MySandwichApp {
         System.out.println("\nTotal price breakdown: ");
         for (int i = 0; i < order.getFillings().size(); i++) {
             String name = order.getFillings().get(i).getName();
-            System.out.println(name + " - $" + String.format("%.2f", order.getAddedFillings().get(name)));
+            System.out.println(name + " - $" + String.format("%.2f", order.getFillings().get(i).getPrice()));
         }
         double tax = (order.returnPriceWithoutTax() * 0.07);
         System.out.println("Tax - $" + String.format("%.2f", tax));
@@ -817,6 +824,7 @@ public class MySandwichApp {
         }
     }
 
+    //EFFECTS: prints the previous orders with the total price including tax
     private void printPreviousOrders() {
         for (int i = 0; i < mySandwiches.size(); i++) {
             System.out.println("\nOrder " + (i + 1));
