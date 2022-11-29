@@ -42,7 +42,6 @@ public class EventHandlingTest {
         myOrder.addComponent(drink);
         myOrder.addComponent(dessert);
         myOrder.setIsSixInch(true);
-        myOrder.setToasted(true);
         int i = 0; //counter
         for (Event next : EventLog.getInstance()) {
             if (i == 0) {
@@ -52,11 +51,8 @@ public class EventHandlingTest {
                 assertEquals("Added " + myOrder.getFillings().get(i-1).getName() + " to the sandwich order",
                         next.getDescription());
             }
-            if (i == 9) {
+            if (i >= 9) {
                 assertEquals("Bread size is chosen to be 6 inches", next.getDescription());
-            }
-            if (i > 9) {
-                assertEquals("Bread is chosen to be toasted", next.getDescription());
             }
             i++;
         }
@@ -73,7 +69,6 @@ public class EventHandlingTest {
         myOrder.addComponent(drink);
         myOrder.addComponent(dessert);
         myOrder.addComponent(seasoning);
-        myOrder.setToasted(false);
         myOrder.setIsSixInch(false);
         int i = 0; //counter
         for (Event next : EventLog.getInstance()) {
@@ -84,10 +79,7 @@ public class EventHandlingTest {
                 assertEquals("Added " + myOrder.getFillings().get(i-1).getName() + " to the sandwich order",
                         next.getDescription());
             }
-            if (i == 10) {
-                assertEquals("Bread is chosen to not be toasted", next.getDescription());
-            }
-            if (i > 10) {
+            if (i >= 10) {
                 assertEquals("Bread size is chosen to be 12 inches", next.getDescription());
             }
             i++;

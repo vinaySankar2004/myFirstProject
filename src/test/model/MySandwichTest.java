@@ -3,8 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MySandwichTest {
     private SandwichComponent bread;
@@ -55,6 +54,14 @@ class MySandwichTest {
     public void testAddComponentOneAdded() {
         myOrder.addComponent(bread);
         assertEquals(1, myOrder.getFillings().size());
+    }
+
+    @Test
+    public void testSetSixInch2() {
+        myOrder.setIsSixInch2(true);
+        assertTrue(myOrder.getIsSixInch());
+        myOrder.setIsSixInch2(false);
+        assertFalse(myOrder.getIsSixInch());
     }
 
     @Test

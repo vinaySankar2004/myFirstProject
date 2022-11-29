@@ -43,5 +43,32 @@ dessert.jpeg - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwallpaperaccess
 drink.jpeg - https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Falcohol&psig=AOvVaw0LULIz2fotUbHb3YW2LZ3E&ust=1668915055998000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKDzt5qnufsCFQAAAAAdAAAAABAE
 
 ### Phase 4: Task 2
-![](/Users/vinayaksankaranarayanan/Desktop/Screenshot 2022-11-28 at 18.48.50.png)
+Mon Nov 28 20:26:35 PST 2022
+Added Gluten-Free Bread to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Added Bacon Strips to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Added Cheddar Cheese to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Added Onion to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Added Caesar to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Added Caesar to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Bread size is chosen to be 12 inches
+
+Mon Nov 28 20:26:35 PST 2022
+Added Choco-Chip Cookie to the sandwich order
+
+Mon Nov 28 20:26:35 PST 2022
+Added Coca-Cola to the sandwich order
+
+
 

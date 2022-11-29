@@ -11,13 +11,11 @@ import java.util.List;
 public class MySandwich implements Writable {
     private List<SandwichComponent> fillings;
     private boolean isSixInch;
-    private boolean isToasted;
 
     //EFFECTS: initialises an array list and a hash map to keep track of the order
     public MySandwich() {
         fillings = new ArrayList<>();
         isSixInch = false;
-        isToasted = false;
     }
 
     //MODIFIES: this
@@ -34,17 +32,6 @@ public class MySandwich implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: toasts the sandwich if true, false otherwise
-    public void setToasted(boolean b) {
-        isToasted = b;
-        if (isToasted == true) {
-            EventLog.getInstance().logEvent(new Event("Bread is chosen to be toasted"));
-        } else {
-            EventLog.getInstance().logEvent(new Event("Bread is chosen to not be toasted"));
-        }
-    }
-
-    //MODIFIES: this
     //EFFECTS: makes the sandwich six inch if true, false otherwise
     public void setIsSixInch(boolean b) {
         isSixInch = b;
@@ -53,6 +40,12 @@ public class MySandwich implements Writable {
         } else {
             EventLog.getInstance().logEvent(new Event("Bread size is chosen to be 12 inches"));
         }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: makes the sandwich six inch if true, false otherwise
+    public void setIsSixInch2(boolean b) {
+        isSixInch = b;
     }
 
     //EFFECTS: retrieves isSixInch
