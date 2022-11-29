@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.SandwichComponent;
 
 import javax.swing.*;
@@ -26,12 +28,26 @@ public class AddDisplayPricesGUI extends JFrame implements ActionListener {
         this.setTitle("MySandwich");
         this.setSize(600, 600);
         this.setLayout(new BorderLayout());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         doneButton.addActionListener(this);
         setHeadingPanel();
         setMainPanel();
         setLowerPanel();
+        onClose();
         this.setVisible(true);
+    }
+
+    //EFFECTS: prints the event logging for all components added to the order to the console
+    public void onClose() {
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next.toString() + "\n");
+                }
+                System.exit(0);
+            }
+        });
     }
 
     //MODIFIES: this
@@ -85,10 +101,13 @@ public class AddDisplayPricesGUI extends JFrame implements ActionListener {
 
 
     //MODIFIES: this
-    //EFFECTS: successful termination of the program// indicating the end
+    //EFFECTS: successful termination of the program and printing the events when done button is hit/indicating the end
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == doneButton) {
+            for (Event next : EventLog.getInstance()) {
+                System.out.println(next.toString() + "\n");
+            }
             System.exit(0);
         }
     }

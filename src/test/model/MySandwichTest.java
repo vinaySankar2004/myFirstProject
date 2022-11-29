@@ -3,12 +3,10 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class SandwichComponentTest {
+class MySandwichTest {
     private SandwichComponent bread;
     private SandwichComponent cheese;
     private SandwichComponent protein;
@@ -51,17 +49,18 @@ class SandwichComponentTest {
         assertEquals(1.20, drink.getPrice());
         assertEquals(3.50, dessert.getPrice());
         assertEquals(0, myOrder.getFillings().size());
-        HashMap<String, Double> hash = new HashMap<>();
-        assertEquals(hash, myOrder.getAddedFillings());
     }
 
     @Test
     public void testAddComponentOneAdded() {
         myOrder.addComponent(bread);
         assertEquals(1, myOrder.getFillings().size());
-        HashMap<String, Double> hash = new HashMap<>();
-        hash.put("Bread 1", 3.50);
-        assertEquals(hash, myOrder.getAddedFillings());
+    }
+
+    @Test
+    public void testAddComponent2OneAdded() {
+        myOrder.addComponent2(bread);
+        assertEquals(1, myOrder.getFillings().size());
     }
 
     @Test
@@ -70,11 +69,6 @@ class SandwichComponentTest {
         myOrder.addComponent(protein);
         myOrder.addComponent(vegetable);
         assertEquals(3, myOrder.getFillings().size());
-        HashMap<String, Double> hash = new HashMap<>();
-        hash.put("Bread 1", 3.50);
-        hash.put("Protein 1", 4.00);
-        hash.put("Vegetable 1", 1.00);
-        assertEquals(hash, myOrder.getAddedFillings());
     }
 
     @Test
@@ -86,19 +80,6 @@ class SandwichComponentTest {
     }
 
     @Test
-    public void testAddExtra() {
-        myOrder.addComponent(vegetable);
-        myOrder.addExtra(vegetable);
-        assertEquals(1, myOrder.getFillings().size());
-        HashMap<String, Double> hash = new HashMap<>();
-        hash.put("Vegetable 1", (1.00 * 2));
-        assertEquals(hash, myOrder.getAddedFillings());
-        myOrder.addExtra(vegetable);
-        hash.put("Vegetable 1", (1.00 * 3));
-        assertEquals(hash, myOrder.getAddedFillings());
-    }
-
-    @Test
     public void testReturnPriceWithoutTaxNotSixInch() {
         myOrder.addComponent(bread);
         myOrder.addComponent(cheese);
@@ -106,6 +87,8 @@ class SandwichComponentTest {
         myOrder.addComponent(vegetable);
         myOrder.addComponent(sauce);
         myOrder.addComponent(seasoning);
+        myOrder.setIsSixInch(false);
+        assertFalse(myOrder.getIsSixInch());
         double price = 14.50;
         assertEquals(price, myOrder.returnPriceWithoutTax());
     }
@@ -118,7 +101,7 @@ class SandwichComponentTest {
         myOrder.addComponent(vegetable);
         myOrder.addComponent(sauce);
         myOrder.addComponent(seasoning);
-        myOrder.setIsSixInch();
+        myOrder.setIsSixInch(true);
         double price = 8.45;
         assertEquals(price, myOrder.returnPriceWithoutTax());
     }

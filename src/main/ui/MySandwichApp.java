@@ -168,7 +168,7 @@ public class MySandwichApp {
         System.out.println("\t12 -> 12 inch");
         int size = input.nextInt();
         if (size == 6) {
-            order.setIsSixInch();
+            order.setIsSixInch(true);
             System.out.println("You have chosen: 6-inch Sandwich");
         } else {
             System.out.println("You have chosen: 12-inch Sandwich");

@@ -79,7 +79,7 @@ public class JsonWriterTest extends JsonTest {
             mySandwich1.addComponent(new SandwichComponent("English Bread", 1));
             mySandwich1.addComponent(new SandwichComponent("Cheddar Cheese", 1.5));
             mySandwich1.addComponent(new SandwichComponent("Veggie Patty", 1.5));
-            mySandwich1.setIsSixInch();
+            mySandwich1.setIsSixInch(true);
             List<MySandwich> mySandwiches = new ArrayList<>();
             JsonWriter writer = new JsonWriter("./data/testWriterWithOneSandwich.json");
             mySandwiches.add(mySandwich);

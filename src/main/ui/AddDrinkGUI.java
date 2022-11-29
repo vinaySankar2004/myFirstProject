@@ -393,9 +393,14 @@ public class AddDrinkGUI extends JFrame implements ActionListener {
             Main.myApp.order.addComponent(WelcomeGUI.PEPPER);
         }
         if (Main.myApp.myGuiMoreInfo.sixInchButton.isSelected()) {
-            Main.myApp.order.setIsSixInch();
+            Main.myApp.order.setIsSixInch(true);
         } else if (Main.myApp.myGuiMoreInfo.twelveInchButton.isSelected()) {
-            //do nothing....
+            Main.myApp.order.setIsSixInch(false);
+        }
+        if (Main.myApp.myGuiMoreInfo.toastedBox.isSelected()) {
+            Main.myApp.order.setToasted(true);
+        } else {
+            Main.myApp.order.setToasted(false);
         }
     }
 

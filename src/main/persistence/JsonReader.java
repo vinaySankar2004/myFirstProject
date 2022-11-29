@@ -47,7 +47,7 @@ public class JsonReader {
         MySandwich sandwich = new MySandwich();
         boolean isSixInch = jsonObject.getBoolean("isSixInch");
         if (isSixInch) {
-            sandwich.setIsSixInch();
+            sandwich.setIsSixInch(true);
         }
         addComponents(sandwich, jsonObject);
         return sandwich;
@@ -81,6 +81,6 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         Double price = jsonObject.getDouble("price");
         SandwichComponent component = new SandwichComponent(name, price);
-        sandwich.addComponent(component);
+        sandwich.addComponent2(component);
     }
 }

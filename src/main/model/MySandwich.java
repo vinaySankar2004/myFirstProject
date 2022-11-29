@@ -5,44 +5,54 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 //represents the order
 public class MySandwich implements Writable {
     private List<SandwichComponent> fillings;
-    private HashMap<String, Double> addedFillings;
     private boolean isSixInch;
+    private boolean isToasted;
 
     //EFFECTS: initialises an array list and a hash map to keep track of the order
     public MySandwich() {
         fillings = new ArrayList<>();
-        addedFillings = new HashMap<>();
         isSixInch = false;
+        isToasted = false;
     }
 
     //MODIFIES: this
     //EFFECTS: adds the sandwich component to the list and hash map (with price)
     public void addComponent(SandwichComponent sc) {
-        if (!addedFillings.containsKey(sc.getName())) {
-            fillings.add(sc);
-            addedFillings.put(sc.getName(), sc.getPrice());
+        fillings.add(sc);
+        EventLog.getInstance().logEvent(new Event("Added " + sc.getName() + " to the sandwich order"));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds the sandwich component to the list and hash map (with price)
+    public void addComponent2(SandwichComponent sc) {
+        fillings.add(sc);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: toasts the sandwich if true, false otherwise
+    public void setToasted(boolean b) {
+        isToasted = b;
+        if (isToasted == true) {
+            EventLog.getInstance().logEvent(new Event("Bread is chosen to be toasted"));
         } else {
-            fillings.add(sc);
-            addExtra(sc);
+            EventLog.getInstance().logEvent(new Event("Bread is chosen to not be toasted"));
         }
     }
 
     //MODIFIES: this
-    //EFFECTS: updates the price of the associated component name in the hash map
-    public void addExtra(SandwichComponent sc) {
-        addedFillings.replace(sc.getName(), (addedFillings.get(sc.getName()) + sc.getPrice()));
-    }
-
-    //MODIFIES: this
     //EFFECTS: makes the sandwich six inch if true, false otherwise
-    public void setIsSixInch() {
-        isSixInch = true;
+    public void setIsSixInch(boolean b) {
+        isSixInch = b;
+        if (isSixInch == true) {
+            EventLog.getInstance().logEvent(new Event("Bread size is chosen to be 6 inches"));
+        } else {
+            EventLog.getInstance().logEvent(new Event("Bread size is chosen to be 12 inches"));
+        }
     }
 
     //EFFECTS: retrieves isSixInch
@@ -53,11 +63,6 @@ public class MySandwich implements Writable {
     //EFFECTS: retrieves the list of added component names
     public List<SandwichComponent> getFillings() {
         return fillings;
-    }
-
-    //EFFECTS: retrieves the hash map of added components and their prices
-    public HashMap<String, Double> getAddedFillings() {
-        return addedFillings;
     }
 
     //REQUIRES: there must be at least one component of the sandwich ordered

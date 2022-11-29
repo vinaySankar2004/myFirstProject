@@ -5,7 +5,7 @@ public class Main {
     static WelcomeGUI myApp;
 
     public static void main(String[] args) {
-        //new MySandwichApp();
-        myApp = new WelcomeGUI();
+        //new MySandwichApp();  // old ui
+        myApp = new WelcomeGUI(); // new gui
     }
 }
