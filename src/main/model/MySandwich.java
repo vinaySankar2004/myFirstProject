@@ -26,12 +26,6 @@ public class MySandwich implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds the sandwich component to the list and hash map (with price)
-    public void addComponent2(SandwichComponent sc) {
-        fillings.add(sc);
-    }
-
-    //MODIFIES: this
     //EFFECTS: makes the sandwich six inch if true, false otherwise
     public void setIsSixInch(boolean b) {
         isSixInch = b;
@@ -40,12 +34,6 @@ public class MySandwich implements Writable {
         } else {
             EventLog.getInstance().logEvent(new Event("Bread size is chosen to be 12 inches"));
         }
-    }
-
-    //MODIFIES: this
-    //EFFECTS: makes the sandwich six inch if true, false otherwise
-    public void setIsSixInch2(boolean b) {
-        isSixInch = b;
     }
 
     //EFFECTS: retrieves isSixInch

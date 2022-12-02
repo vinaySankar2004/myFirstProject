@@ -32,6 +32,7 @@ public class AddDrinkGUI extends JFrame implements ActionListener {
     JRadioButton fantaButton2 = new JRadioButton();
     ButtonGroup buttonGroup1 = new ButtonGroup();
     ButtonGroup buttonGroup2 = new ButtonGroup();
+    AddDisplayPricesGUI displayPrices;
 
     //sets up the frame
     AddDrinkGUI() {
@@ -201,7 +202,7 @@ public class AddDrinkGUI extends JFrame implements ActionListener {
                 addEverythingToSystem();
                 Main.myApp.myGuiPrevOrders.mySandwiches.add(Main.myApp.order);
                 saveMySandwiches();
-                new AddDisplayPricesGUI();
+                displayPrices = new AddDisplayPricesGUI();
             }
         }
     }

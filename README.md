@@ -70,5 +70,6 @@ Added Choco-Chip Cookie to the sandwich order
 Mon Nov 28 20:26:35 PST 2022
 Added Coca-Cola to the sandwich order
 
-
+### Phase 4: Task 3
+The main change I would make if I had more time was to make SandwichComponent an interface. This is because SandwichComponent is never used as an object in this project, it is simply a design to add all components (though different) to my sandwich. In addition, there is a lot of repeatable code in my UI and GUI classes, if I had more time, I would create abstract helper methods which would save a lot of time as well as make it easier to debug if there is an error.
 

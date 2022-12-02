@@ -1,15 +1,11 @@
 package ui;
 
 import model.*;
-import persistence.JsonReader;
-import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 // represents the welcome frame
 public class WelcomeGUI extends JFrame implements ActionListener {

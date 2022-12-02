@@ -57,20 +57,6 @@ class MySandwichTest {
     }
 
     @Test
-    public void testSetSixInch2() {
-        myOrder.setIsSixInch2(true);
-        assertTrue(myOrder.getIsSixInch());
-        myOrder.setIsSixInch2(false);
-        assertFalse(myOrder.getIsSixInch());
-    }
-
-    @Test
-    public void testAddComponent2OneAdded() {
-        myOrder.addComponent2(bread);
-        assertEquals(1, myOrder.getFillings().size());
-    }
-
-    @Test
     public void testAddComponentMultipleAdded() {
         myOrder.addComponent(bread);
         myOrder.addComponent(protein);
