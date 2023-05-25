@@ -70,7 +70,7 @@ public class MySandwich implements Writable {
     @Override
     public String toString() {
         String price = String.format("%.2f", returnPriceWithTax());  // get balance to 2 decimal places as a string
-        return ("\nThe total price for this order (including tax) is $" + price + "\nThank you for using MySandwich!");
+        return ("\nThe total price for this order (including tax) is $" + price + "\n. Thank you for using MySandwich!");
     }
 
     @Override
